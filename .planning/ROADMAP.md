@@ -18,7 +18,7 @@
 
 ---
 
-## Phase 1 — Foundation & Auth
+## Phase 1: Foundation & Auth
 
 **Goal:** Working Next.js app with Google OAuth, company creation, RLS-enforced multi-tenancy, and authenticated app shell. Nothing else is safe to build until this is solid.
 
@@ -48,7 +48,7 @@
 
 ---
 
-## Phase 2 — Projects, Employees & Attendance
+## Phase 2: Projects, Employees & Attendance
 
 **Goal:** Core operational entities. Projects are the central organizing unit. Employees and attendance are the prerequisite for payroll. Dashboard gives immediate value on first login.
 
@@ -76,7 +76,7 @@
 
 ---
 
-## Phase 3 — Inventory & Procurement
+## Phase 3: Inventory & Procurement
 
 **Goal:** Materials catalog, per-project stock, atomic operations (waste/reservation/transfer), suppliers, POs, and delivery recording that atomically updates inventory.
 
@@ -108,7 +108,7 @@
 
 ---
 
-## Phase 4 — Payroll & HR Finance
+## Phase 4: Payroll & HR Finance
 
 **Goal:** PH statutory payroll engine with accurate SSS/PhilHealth/Pag-IBIG/BIR deductions, cash advance tracking, and employee loan management.
 
@@ -141,7 +141,7 @@
 
 ---
 
-## Phase 5 — Operations, Reports & Launch
+## Phase 5: Operations, Reports & Launch
 
 **Goal:** Complete the product: expenses, equipment, documents, in-app notifications, reports, billing, realtime, and dashboard v2. Everything needed to ship to first paying customers.
 
