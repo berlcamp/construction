@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 01-04-PLAN.md — Onboarding form and invitation system
-last_updated: "2026-03-24T07:03:43.598Z"
+stopped_at: Completed 01-05-PLAN.md — App shell (sidebar, header, Redux, dashboard)
+last_updated: "2026-03-24T07:14:54Z"
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 5
-  completed_plans: 3
+  completed_plans: 4
 ---
 
 # Project State
@@ -48,6 +48,9 @@ Plan: 5 of 5
 - **2026-03-24**: TypeScript DB types require `type` alias (not `interface`) for GenericTable compatibility; Relationships: [] added to all tables; SupabaseClient<Database, 'construction'> schema generic required throughout
 - **2026-03-24**: getCompanyContext uses two separate queries (company_members + companies) — cross-table joins produce SelectQueryError without Relationships definitions in manually-crafted types
 - **2026-03-24**: Company slug generated client-side (name slugified + 6-char random suffix) for MVP scale
+- **2026-03-24**: Redux store has ui (sidebarOpen, activeModal) + notifications (unreadCount) slices only — no server data per D-14
+- **2026-03-24**: Sidebar shows Dashboard link only in Phase 1 (D-06/D-07) — future modules added in Phase 2+
+- **2026-03-24**: App layout auth gate uses getUser() (not getSession()) per D-11/Pitfall-2
 
 ## Pending Todos
 
@@ -61,8 +64,8 @@ Plan: 5 of 5
 
 ## Session Continuity
 
-Last session: 2026-03-24T07:03:43.595Z
-Stopped at: Completed 01-04-PLAN.md — Onboarding form and invitation system
+Last session: 2026-03-24T07:14:54Z
+Stopped at: Completed 01-05-PLAN.md — App shell (sidebar, header, Redux, dashboard)
 Resume file: None
 
-Next action: Execute 01-05-PLAN.md (Basic dashboard + app shell)
+Next action: Phase 1 complete — proceed to Phase 2 (Projects, Employees & Attendance)
