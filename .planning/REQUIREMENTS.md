@@ -24,7 +24,7 @@
 - [ ] **AUTH-06**: Unauthenticated requests to protected routes redirect to `/login`
 - [ ] **AUTH-07**: Owner/Admin can invite users by email with role assignment
 - [ ] **AUTH-08**: Invited user can accept invitation via token link, resulting in `company_members` record creation
-- [ ] **AUTH-09**: Invitations expire after 7 days; duplicate pending invitations to same email are rejected
+- [x] **AUTH-09**: Invitations expire after 7 days; duplicate pending invitations to same email are rejected
 - [x] **AUTH-10**: Exactly one owner per company enforced by partial unique index
 
 ### Dashboard
