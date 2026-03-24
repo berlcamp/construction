@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 01-02-PLAN.md — TypeScript database types for all 30 construction schema tables
+stopped_at: Completed 01-04-PLAN.md — Onboarding form and invitation system
 last_updated: "2026-03-24T06:43:40.981Z"
 progress:
   total_phases: 5
@@ -23,7 +23,7 @@ progress:
 ## Current Position
 
 Phase: 01 (foundation-auth) — EXECUTING
-Plan: 3 of 5
+Plan: 5 of 5
 
 ## Roadmap Summary
 
@@ -45,6 +45,9 @@ Plan: 3 of 5
 - **2026-03-24**: Realtime on notifications + project_inventory only
 - **2026-03-24**: companies/company_members/company_invitations pre-existed from 01-01; plan 02 produced TypeScript database types
 - **2026-03-24**: TypeScript types manually crafted (Docker unavailable); Database interface mirrors Supabase codegen output shape
+- **2026-03-24**: TypeScript DB types require `type` alias (not `interface`) for GenericTable compatibility; Relationships: [] added to all tables; SupabaseClient<Database, 'construction'> schema generic required throughout
+- **2026-03-24**: getCompanyContext uses two separate queries (company_members + companies) — cross-table joins produce SelectQueryError without Relationships definitions in manually-crafted types
+- **2026-03-24**: Company slug generated client-side (name slugified + 6-char random suffix) for MVP scale
 
 ## Pending Todos
 
@@ -58,8 +61,8 @@ Plan: 3 of 5
 
 ## Session Continuity
 
-Last session: 2026-03-24T06:43:40.979Z
-Stopped at: Completed 01-02-PLAN.md — TypeScript database types for all 30 construction schema tables
+Last session: 2026-03-24T07:01:45Z
+Stopped at: Completed 01-04-PLAN.md — Onboarding form and invitation system
 Resume file: None
 
-Next action: `/gsd:plan-phase 1`
+Next action: Execute 01-05-PLAN.md (Basic dashboard + app shell)
