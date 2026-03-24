@@ -15,24 +15,51 @@ Working Next.js app with Google OAuth, company creation, RLS-enforced multi-tena
 
 ### Company Onboarding
 
-- **D-01:** Multi-step wizard (2 steps) for company creation. Step 1 is required; Step 2 is optional and skippable.
-- **D-02:** Step 1 required fields: company name only. Minimum friction for first impression.
-- **D-03:** Step 2 optional fields: company address (street, city, province) + contact phone. Skippable — user can fill in Settings later.
-- **D-04:** After company creation completes, redirect to `/dashboard`. No welcome/checklist page.
+- **D-01:** Single-step form (NOT multi-step wizard).
+- **D-02:** Fields:
+  - Company name (required)
+  - Address (optional)
+  - Phone (optional)
+- **D-03:** After submit → create company + owner membership + trial.
+- **D-04:** Redirect to `/dashboard`. No welcome/checklist page.
 
 ### Sidebar Navigation
 
-- **D-05:** Full nav rendered in Phase 1 with all module groups: Dashboard, Projects, Employees, Inventory, Payroll, Reports, Settings, Profile. Unbuilt modules (Projects through Reports) are grayed out and non-clickable (disabled state, no href). Nav structure is finalized in Phase 1 — no refactor needed in later phases.
-- **D-06:** Collapsible sidebar toggle — expands to icon + label, collapses to icon-only strip. Toggle state persisted in Redux (UI state only). Standard SaaS pattern.
+### Sidebar Navigation
+
+- **D-05:** Minimal navigation in Phase 1.
+- **D-06:** Only include:
+  - Dashboard
+- **D-07:** Do NOT render future modules yet (Projects, Inventory, Payroll, etc.).
+- **D-08:** Collapsible sidebar toggle still allowed (Redux UI state).
 
 ### Invitation Flow
 
-- **D-07:** Invited user experience: invite link → branded accept page showing company name, inviter name, assigned role, and days until expiry → "Accept & sign in with Google" button → Google OAuth → company membership created on callback. This applies to both new users (no existing account) and existing users.
-- **D-08:** Expired invite token: show dedicated error page with message "This invitation has expired. Ask [Company] to send a new invite." — not a redirect to /login with toast.
+### Invitation Flow
+
+- **D-07:** Invite link → redirect directly to Google OAuth.
+- **D-08:** After login:
+  - Validate invitation token
+  - Create company_members record
+  - Redirect to `/dashboard`
+- **D-09:** Invalid/expired token → dedicated error page.
+- **D-10:** No pre-accept page for MVP.
 
 ### Trial Indicator
 
 - **D-09:** 14-day trial indicated by a small badge chip in the app header (next to notification bell): "Trial — X days left". Countdown derived from `companies.trial_ends_at`. Badge disappears when subscription becomes active. Non-intrusive; no banner or modal.
+
+### Plan Structure (revised 2026-03-24 — replanning for small, safe execution)
+
+- **D-PS-01:** Phase 1 is split into 5 small plans — each focused on a single concern. DO NOT combine into large plans.
+- **D-PS-02:** Plan 1: Supabase project setup + `profiles` table + profile auto-creation trigger only.
+- **D-PS-03:** Plan 2: `companies` table + `company_members` table only (no RLS yet).
+- **D-PS-04:** Plan 3: Google OAuth + auth flow (Supabase clients, middleware, callback route, login page).
+- **D-PS-05:** Plan 4: Company onboarding flow (single-step form, create company + membership + trial, redirect to /dashboard).
+- **D-PS-06:** Plan 5: Basic dashboard + app layout (sidebar with Dashboard only, header with trial badge, breadcrumbs, Redux UI state).
+- **D-PS-07:** RLS policies are OUT of Phase 1 — deferred to a later phase/plan.
+- **D-PS-08:** Transaction functions (PL/pgSQL) are OUT of Phase 1 — deferred to a later phase/plan.
+- **D-PS-09:** Only create the tables needed for auth/onboarding in Phase 1 (profiles, companies, company_members, company_invitations). All other schema tables are deferred.
 
 ### Locked Decisions (from project setup — do not re-discuss)
 
@@ -53,37 +80,46 @@ Working Next.js app with Google OAuth, company creation, RLS-enforced multi-tena
 </decisions>
 
 <canonical_refs>
+
 ## Canonical References
 
 **Downstream agents MUST read these before planning or implementing.**
 
 ### Requirements
+
 - `.planning/REQUIREMENTS.md` §Foundation & Database (FOUND-01–06) — all 25+ tables, RLS, PostgreSQL functions, schema setup
 - `.planning/REQUIREMENTS.md` §Authentication & Multi-Tenancy (AUTH-01–10) — complete auth and multi-tenancy requirements
 
 ### Architecture & Patterns
+
 - `.planning/research/ARCHITECTURE.md` — middleware pattern, Server Component/Action patterns, RLS policy structure, build order dependency graph
 - `.planning/research/STACK.md` — exact library versions, peer dependency constraints, anti-patterns to avoid (TanStack Query, SWR, Prisma, auth-helpers-nextjs)
 
 ### Critical Pitfalls (Phase 1 must address all of these)
+
 - `.planning/research/PITFALLS.md` — Pitfall 1 (RLS on custom schema never fires), Pitfall 2 (getSession vs getUser), Pitfall 3 (middleware cookie passthrough), Pitfall 6 (cross-tenant Storage leakage), Pitfall 7 (service role in Server Actions)
 
 ### Project Context
+
 - `.planning/research/SUMMARY.md` §Phase 1: Foundation, Auth, and Multi-Tenancy — rationale and deliverables summary
 - `.planning/PROJECT.md` — vision, constraints, and key decisions (server-first architecture, company_members design)
 
 </canonical_refs>
 
 <code_context>
+
 ## Existing Code Insights
 
 ### Reusable Assets
+
 - None — project starts from scratch. Phase 1 establishes all foundational patterns.
 
 ### Established Patterns
+
 - None yet — Phase 1 defines: Server Component data fetch pattern, Server Action write pattern, Supabase client instantiation, RLS policy structure, Redux store structure.
 
 ### Integration Points
+
 - Phase 1 creates the authentication boundary that every subsequent phase sits behind.
 - Sidebar nav structure built in Phase 1 is the shell that Phase 2–5 modules plug into (just enable the disabled nav items).
 - `company_members` RLS pattern established here is reused verbatim in every subsequent phase's table policies.
@@ -95,7 +131,7 @@ Working Next.js app with Google OAuth, company creation, RLS-enforced multi-tena
 ## Specific Ideas
 
 - Sidebar uses a previewed layout: icon + label in expanded state, icon-only in collapsed state (user confirmed the preview mockup).
-- Accept page for invitations shows: company name, inviter name, assigned role, days until expiry — before Google OAuth prompt.
+- Invitation flow: invite link redirects directly to Google OAuth — no pre-accept display page (D-10 confirmed).
 - Header layout confirmed: `[Breadcrumbs] ... [🔔 Notification Bell] [Trial — X days] [👤 User Avatar]`
 - No welcome/checklist page after onboarding — straight to `/dashboard`.
 
@@ -110,5 +146,5 @@ None — discussion stayed within phase scope.
 
 ---
 
-*Phase: 01-foundation-auth*
-*Context gathered: 2026-03-24*
+_Phase: 01-foundation-auth_
+_Context gathered: 2026-03-24_
