@@ -12,18 +12,18 @@
 - [x] **FOUND-03**: PostgreSQL transaction functions deployed: `fn_record_delivery`, `fn_reserve_stock`, `fn_fulfill_reservation`, `fn_complete_transfer`, `fn_report_waste`, `fn_cancel_reservation`
 - [x] **FOUND-04**: `updated_at` triggers applied to all relevant tables
 - [ ] **FOUND-05**: Auto-profile creation trigger fires on `auth.users` INSERT, populating `construction.profiles`
-- [ ] **FOUND-06**: Supabase JS clients (server + browser) configured with `db: { schema: 'construction' }`
+- [x] **FOUND-06**: Supabase JS clients (server + browser) configured with `db: { schema: 'construction' }`
 
 ### Authentication & Multi-Tenancy
 
-- [ ] **AUTH-01**: User can sign in with Google OAuth via Supabase Auth
-- [ ] **AUTH-02**: On first login, profile is auto-created in `construction.profiles`
-- [ ] **AUTH-03**: User with no `company_members` record is redirected to company onboarding flow
-- [ ] **AUTH-04**: User can create a company; system atomically creates company + owner membership + trial subscription
-- [ ] **AUTH-05**: Session persists across browser refresh; middleware refreshes cookies on every request
-- [ ] **AUTH-06**: Unauthenticated requests to protected routes redirect to `/login`
-- [ ] **AUTH-07**: Owner/Admin can invite users by email with role assignment
-- [ ] **AUTH-08**: Invited user can accept invitation via token link, resulting in `company_members` record creation
+- [x] **AUTH-01**: User can sign in with Google OAuth via Supabase Auth
+- [x] **AUTH-02**: On first login, profile is auto-created in `construction.profiles`
+- [x] **AUTH-03**: User with no `company_members` record is redirected to company onboarding flow
+- [x] **AUTH-04**: User can create a company; system atomically creates company + owner membership + trial subscription
+- [x] **AUTH-05**: Session persists across browser refresh; middleware refreshes cookies on every request
+- [x] **AUTH-06**: Unauthenticated requests to protected routes redirect to `/login`
+- [x] **AUTH-07**: Owner/Admin can invite users by email with role assignment
+- [x] **AUTH-08**: Invited user can accept invitation via token link, resulting in `company_members` record creation
 - [x] **AUTH-09**: Invitations expire after 7 days; duplicate pending invitations to same email are rejected
 - [x] **AUTH-10**: Exactly one owner per company enforced by partial unique index
 

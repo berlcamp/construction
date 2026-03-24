@@ -10,7 +10,7 @@
 
 | # | Phase | Goal | Requirements |
 |---|-------|------|-------------|
-| 1 | 1/5 | In Progress|  |
+| 1 | 3/5 | In Progress|  |
 | 2 | Projects, Employees & Attendance | Core operational entities — the dependency root for payroll, inventory, and costing | DASH-01–02, PROJ-01–07, EMP-01–04, ATT-01–04, SETT-01–03 |
 | 3 | Inventory & Procurement | Materials catalog, project stock, atomic inventory ops, suppliers, purchase orders, and deliveries | INV-01–09, PROC-01–06 |
 | 4 | Payroll & HR Finance | PH statutory payroll engine (SSS/PhilHealth/Pag-IBIG/BIR), cash advances, and employee loans | PAY-01–12, FIN-01–05 |
@@ -35,12 +35,12 @@
 - [ ] App shell renders: dark sidebar, header with notification bell, breadcrumbs
 - [ ] `supabase gen types typescript --schema construction` produces typed DB client
 
-**Plans:** 1/5 plans executed
+**Plans:** 3/5 plans executed
 
 Plans:
 - [x] 01-01-PLAN.md — Project setup + complete database schema (18 migrations, RLS, transaction functions)
-- [ ] 01-02-PLAN.md — Auth flow (Supabase clients, middleware, Google OAuth, callback, type generation)
-- [ ] 01-03-PLAN.md — Company onboarding + invitation system (create company, send/accept invites)
+- [x] 01-02-PLAN.md — Auth flow (Supabase clients, middleware, Google OAuth, callback, type generation)
+- [x] 01-03-PLAN.md — Company onboarding + invitation system (create company, send/accept invites)
 - [ ] 01-04-PLAN.md — App shell (Redux store, sidebar, header, breadcrumbs, dashboard layout)
 
 **Key risks:**
