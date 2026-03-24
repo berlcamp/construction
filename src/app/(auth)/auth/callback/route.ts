@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase/server'
+import { acceptInvitation } from '@/lib/auth/acceptInvitation'
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
@@ -9,33 +10,37 @@ export async function GET(request: Request) {
   if (code) {
     const supabase = await createServerClient()
 
-    // Exchange the code for a session
     const { error } = await supabase.auth.exchangeCodeForSession(code)
     if (error) {
       return NextResponse.redirect(`${origin}/login?error=auth_failed`)
     }
 
-    // If there's an invite token, redirect to accept invitation flow
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      return NextResponse.redirect(`${origin}/login?error=no_user`)
+    }
+
+    // Handle invitation acceptance if invite_token is present (per D-08)
     if (inviteToken) {
-      return NextResponse.redirect(`${origin}/invite/${inviteToken}`)
+      const result = await acceptInvitation(supabase, inviteToken, user.id)
+      if (result.success) {
+        return NextResponse.redirect(`${origin}/dashboard`)
+      } else {
+        return NextResponse.redirect(`${origin}/invite/error?reason=${encodeURIComponent(result.error || 'unknown')}`)
+      }
     }
 
     // Check if user has a company membership (AUTH-03)
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-    if (user) {
-      const { data: membership } = await supabase
-        .from('company_members')
-        .select('id')
-        .eq('user_id', user.id)
-        .limit(1)
-        .maybeSingle()
+    const { data: membership } = await supabase
+      .from('company_members')
+      .select('id')
+      .eq('user_id', user.id)
+      .limit(1)
+      .maybeSingle()
 
-      if (membership) {
-        // User has a company — go to dashboard (D-04)
-        return NextResponse.redirect(`${origin}/dashboard`)
-      }
+    if (membership) {
+      // User has a company — go to dashboard (D-04)
+      return NextResponse.redirect(`${origin}/dashboard`)
     }
 
     // No company membership — go to onboarding (AUTH-03)
