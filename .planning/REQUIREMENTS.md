@@ -7,10 +7,10 @@
 
 ### Foundation & Database
 
-- [ ] **FOUND-01**: Custom `construction` PostgreSQL schema created with all 25+ tables, RLS enabled, and exposed via PostgREST
-- [ ] **FOUND-02**: All RLS policies enforce company isolation via `company_members` junction table (not `profiles.company_id`)
-- [ ] **FOUND-03**: PostgreSQL transaction functions deployed: `fn_record_delivery`, `fn_reserve_stock`, `fn_fulfill_reservation`, `fn_complete_transfer`, `fn_report_waste`, `fn_cancel_reservation`
-- [ ] **FOUND-04**: `updated_at` triggers applied to all relevant tables
+- [x] **FOUND-01**: Custom `construction` PostgreSQL schema created with all 25+ tables, RLS enabled, and exposed via PostgREST
+- [x] **FOUND-02**: All RLS policies enforce company isolation via `company_members` junction table (not `profiles.company_id`)
+- [x] **FOUND-03**: PostgreSQL transaction functions deployed: `fn_record_delivery`, `fn_reserve_stock`, `fn_fulfill_reservation`, `fn_complete_transfer`, `fn_report_waste`, `fn_cancel_reservation`
+- [x] **FOUND-04**: `updated_at` triggers applied to all relevant tables
 - [ ] **FOUND-05**: Auto-profile creation trigger fires on `auth.users` INSERT, populating `construction.profiles`
 - [ ] **FOUND-06**: Supabase JS clients (server + browser) configured with `db: { schema: 'construction' }`
 
@@ -25,7 +25,7 @@
 - [ ] **AUTH-07**: Owner/Admin can invite users by email with role assignment
 - [ ] **AUTH-08**: Invited user can accept invitation via token link, resulting in `company_members` record creation
 - [ ] **AUTH-09**: Invitations expire after 7 days; duplicate pending invitations to same email are rejected
-- [ ] **AUTH-10**: Exactly one owner per company enforced by partial unique index
+- [x] **AUTH-10**: Exactly one owner per company enforced by partial unique index
 
 ### Dashboard
 
