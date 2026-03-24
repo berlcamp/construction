@@ -35,11 +35,13 @@
 - [ ] App shell renders: dark sidebar, header with notification bell, breadcrumbs
 - [ ] `supabase gen types typescript --schema construction` produces typed DB client
 
-**Plans:**
-1. Database foundation — migrations 000–016: schema, all tables, RLS policies, triggers, helper functions
-2. Auth flow — Google OAuth, callback route, middleware, profile trigger, onboarding, invitation system
-3. App shell — Next.js route structure, Redux setup, sidebar, header, layout, loading states
-4. Transaction functions — migration 017: all 6 atomic inventory/stock PL/pgSQL functions
+**Plans:** 4 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Project setup + complete database schema (18 migrations, RLS, transaction functions)
+- [ ] 01-02-PLAN.md — Auth flow (Supabase clients, middleware, Google OAuth, callback, type generation)
+- [ ] 01-03-PLAN.md — Company onboarding + invitation system (create company, send/accept invites)
+- [ ] 01-04-PLAN.md — App shell (Redux store, sidebar, header, breadcrumbs, dashboard layout)
 
 **Key risks:**
 - PostgREST not picking up `construction` schema — test with `supabase.from('profiles').select()` immediately after migration
