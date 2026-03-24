@@ -10,29 +10,37 @@ export type CompanyContext = {
 }
 
 export async function getCompanyContext(
-  supabase: SupabaseClient<Database>
+  supabase: SupabaseClient<Database, 'construction'>
 ): Promise<CompanyContext | null> {
   const {
     data: { user },
   } = await supabase.auth.getUser()
   if (!user) return null
 
+  // Fetch membership first, then company in a separate query
+  // (avoids cross-table join type issues with manually-crafted DB types)
   const { data: membership } = await supabase
     .from('company_members')
-    .select('company_id, role, companies:company_id(id, name, trial_ends_at, subscription_status)')
+    .select('company_id, role')
     .eq('user_id', user.id)
     .limit(1)
     .single()
 
-  if (!membership || !membership.companies) return null
+  if (!membership) return null
 
-  const company = membership.companies as any
+  const { data: company } = await supabase
+    .from('companies')
+    .select('id, name, trial_ends_at, plan_status')
+    .eq('id', membership.company_id)
+    .single()
+
+  if (!company) return null
 
   return {
     companyId: company.id,
     companyName: company.name,
     role: membership.role,
     trialEndsAt: company.trial_ends_at,
-    subscriptionStatus: company.subscription_status,
+    subscriptionStatus: company.plan_status,
   }
 }

@@ -148,7 +148,7 @@ export type SubscriptionStatus = 'pending' | 'paid' | 'past_due' | 'cancelled'
 // Row types (what you get back from SELECT)
 // ---------------------------------------------------------------------------
 
-export interface Profile {
+export type Profile = {
   id: string
   email: string
   full_name: string
@@ -159,7 +159,7 @@ export interface Profile {
   updated_at: string
 }
 
-export interface Company {
+export type Company = {
   id: string
   name: string
   slug: string
@@ -180,7 +180,7 @@ export interface Company {
   updated_at: string
 }
 
-export interface CompanyMember {
+export type CompanyMember = {
   id: string
   company_id: string
   user_id: string
@@ -191,7 +191,7 @@ export interface CompanyMember {
   updated_at: string
 }
 
-export interface CompanyInvitation {
+export type CompanyInvitation = {
   id: string
   company_id: string
   invited_email: string
@@ -204,7 +204,7 @@ export interface CompanyInvitation {
   created_at: string
 }
 
-export interface Project {
+export type Project = {
   id: string
   company_id: string
   name: string
@@ -223,7 +223,7 @@ export interface Project {
   updated_at: string
 }
 
-export interface ProjectMember {
+export type ProjectMember = {
   id: string
   project_id: string
   employee_id: string | null
@@ -232,7 +232,7 @@ export interface ProjectMember {
   removed_at: string | null
 }
 
-export interface Material {
+export type Material = {
   id: string
   company_id: string
   name: string
@@ -247,7 +247,7 @@ export interface Material {
   updated_at: string
 }
 
-export interface ProjectInventory {
+export type ProjectInventory = {
   id: string
   project_id: string
   material_id: string
@@ -256,7 +256,7 @@ export interface ProjectInventory {
   last_updated: string
 }
 
-export interface InventoryLog {
+export type InventoryLog = {
   id: string
   project_id: string
   material_id: string
@@ -270,7 +270,7 @@ export interface InventoryLog {
   created_at: string
 }
 
-export interface StockReservation {
+export type StockReservation = {
   id: string
   project_id: string
   material_id: string
@@ -282,7 +282,7 @@ export interface StockReservation {
   created_at: string
 }
 
-export interface InventoryTransfer {
+export type InventoryTransfer = {
   id: string
   company_id: string
   from_project_id: string
@@ -297,7 +297,7 @@ export interface InventoryTransfer {
   created_at: string
 }
 
-export interface Supplier {
+export type Supplier = {
   id: string
   company_id: string
   name: string
@@ -311,7 +311,7 @@ export interface Supplier {
   updated_at: string
 }
 
-export interface PurchaseOrder {
+export type PurchaseOrder = {
   id: string
   company_id: string
   po_number: string
@@ -329,7 +329,7 @@ export interface PurchaseOrder {
   updated_at: string
 }
 
-export interface PoItem {
+export type PoItem = {
   id: string
   purchase_order_id: string
   material_id: string
@@ -340,7 +340,7 @@ export interface PoItem {
   created_at: string
 }
 
-export interface Delivery {
+export type Delivery = {
   id: string
   purchase_order_id: string
   delivery_date: string
@@ -349,7 +349,7 @@ export interface Delivery {
   created_at: string
 }
 
-export interface DeliveryItem {
+export type DeliveryItem = {
   id: string
   delivery_id: string
   po_item_id: string
@@ -357,7 +357,7 @@ export interface DeliveryItem {
   created_at: string
 }
 
-export interface Employee {
+export type Employee = {
   id: string
   company_id: string
   profile_id: string | null
@@ -380,7 +380,7 @@ export interface Employee {
   updated_at: string
 }
 
-export interface Attendance {
+export type Attendance = {
   id: string
   employee_id: string
   project_id: string | null
@@ -393,7 +393,7 @@ export interface Attendance {
   created_at: string
 }
 
-export interface CashAdvance {
+export type CashAdvance = {
   id: string
   company_id: string
   employee_id: string
@@ -406,7 +406,7 @@ export interface CashAdvance {
   created_at: string
 }
 
-export interface EmployeeLoan {
+export type EmployeeLoan = {
   id: string
   company_id: string
   employee_id: string
@@ -420,7 +420,7 @@ export interface EmployeeLoan {
   created_at: string
 }
 
-export interface Payroll {
+export type Payroll = {
   id: string
   company_id: string
   period_start: string
@@ -434,7 +434,7 @@ export interface Payroll {
   updated_at: string
 }
 
-export interface PayrollItem {
+export type PayrollItem = {
   id: string
   payroll_id: string
   employee_id: string
@@ -462,7 +462,7 @@ export interface PayrollItem {
   created_at: string
 }
 
-export interface ProjectCost {
+export type ProjectCost = {
   id: string
   project_id: string
   category: ProjectCostCategory
@@ -475,7 +475,7 @@ export interface ProjectCost {
   created_at: string
 }
 
-export interface Expense {
+export type Expense = {
   id: string
   company_id: string
   project_id: string | null
@@ -490,7 +490,7 @@ export interface Expense {
   created_at: string
 }
 
-export interface Equipment {
+export type Equipment = {
   id: string
   company_id: string
   name: string
@@ -505,7 +505,7 @@ export interface Equipment {
   updated_at: string
 }
 
-export interface EquipmentAssignment {
+export type EquipmentAssignment = {
   id: string
   equipment_id: string
   project_id: string
@@ -516,7 +516,7 @@ export interface EquipmentAssignment {
   created_at: string
 }
 
-export interface Document {
+export type Document = {
   id: string
   company_id: string
   project_id: string | null
@@ -528,7 +528,7 @@ export interface Document {
   created_at: string
 }
 
-export interface Notification {
+export type Notification = {
   id: string
   company_id: string
   user_id: string
@@ -540,7 +540,7 @@ export interface Notification {
   created_at: string
 }
 
-export interface AuditLog {
+export type AuditLog = {
   id: string
   company_id: string
   user_id: string | null
@@ -553,7 +553,7 @@ export interface AuditLog {
   created_at: string
 }
 
-export interface Subscription {
+export type Subscription = {
   id: string
   company_id: string
   plan: string
@@ -571,7 +571,7 @@ export interface Subscription {
 // View types
 // ---------------------------------------------------------------------------
 
-export interface ProjectCostSummary {
+export type ProjectCostSummary = {
   project_id: string
   project_name: string
   budget: number | null
@@ -586,7 +586,7 @@ export interface ProjectCostSummary {
 // Database shape (mirrors supabase gen types output)
 // ---------------------------------------------------------------------------
 
-export interface Database {
+export type Database = {
   construction: {
     Tables: {
       profiles: {
@@ -597,6 +597,7 @@ export interface Database {
           updated_at?: string
         }
         Update: Partial<Omit<Profile, 'id'>>
+        Relationships: []
       }
       companies: {
         Row: Company
@@ -605,6 +606,7 @@ export interface Database {
           updated_at?: string
         }
         Update: Partial<Omit<Company, 'id'>>
+        Relationships: []
       }
       company_members: {
         Row: CompanyMember
@@ -614,6 +616,7 @@ export interface Database {
           joined_at?: string
         }
         Update: Partial<Omit<CompanyMember, 'id'>>
+        Relationships: []
       }
       company_invitations: {
         Row: CompanyInvitation
@@ -622,6 +625,7 @@ export interface Database {
           token?: string
         }
         Update: Partial<Omit<CompanyInvitation, 'id'>>
+        Relationships: []
       }
       projects: {
         Row: Project
@@ -631,6 +635,7 @@ export interface Database {
           updated_at?: string
         }
         Update: Partial<Omit<Project, 'id'>>
+        Relationships: []
       }
       project_members: {
         Row: ProjectMember
@@ -638,6 +643,7 @@ export interface Database {
           assigned_at?: string
         }
         Update: Partial<Omit<ProjectMember, 'id'>>
+        Relationships: []
       }
       materials: {
         Row: Material
@@ -648,6 +654,7 @@ export interface Database {
           updated_at?: string
         }
         Update: Partial<Omit<Material, 'id'>>
+        Relationships: []
       }
       project_inventory: {
         Row: ProjectInventory
@@ -657,6 +664,7 @@ export interface Database {
           last_updated?: string
         }
         Update: Partial<Omit<ProjectInventory, 'id'>>
+        Relationships: []
       }
       inventory_logs: {
         Row: InventoryLog
@@ -664,6 +672,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<InventoryLog, 'id'>>
+        Relationships: []
       }
       stock_reservations: {
         Row: StockReservation
@@ -672,6 +681,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<StockReservation, 'id'>>
+        Relationships: []
       }
       inventory_transfers: {
         Row: InventoryTransfer
@@ -680,6 +690,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<InventoryTransfer, 'id'>>
+        Relationships: []
       }
       suppliers: {
         Row: Supplier
@@ -689,6 +700,7 @@ export interface Database {
           updated_at?: string
         }
         Update: Partial<Omit<Supplier, 'id'>>
+        Relationships: []
       }
       purchase_orders: {
         Row: PurchaseOrder
@@ -700,6 +712,7 @@ export interface Database {
           updated_at?: string
         }
         Update: Partial<Omit<PurchaseOrder, 'id'>>
+        Relationships: []
       }
       po_items: {
         Row: PoItem
@@ -708,6 +721,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<PoItem, 'id' | 'total_cost'>>
+        Relationships: []
       }
       deliveries: {
         Row: Delivery
@@ -716,6 +730,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<Delivery, 'id'>>
+        Relationships: []
       }
       delivery_items: {
         Row: DeliveryItem
@@ -723,6 +738,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<DeliveryItem, 'id'>>
+        Relationships: []
       }
       employees: {
         Row: Employee
@@ -733,6 +749,7 @@ export interface Database {
           updated_at?: string
         }
         Update: Partial<Omit<Employee, 'id'>>
+        Relationships: []
       }
       attendance: {
         Row: Attendance
@@ -741,6 +758,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<Attendance, 'id'>>
+        Relationships: []
       }
       cash_advances: {
         Row: CashAdvance
@@ -749,6 +767,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<CashAdvance, 'id'>>
+        Relationships: []
       }
       employee_loans: {
         Row: EmployeeLoan
@@ -757,6 +776,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<EmployeeLoan, 'id'>>
+        Relationships: []
       }
       payroll: {
         Row: Payroll
@@ -768,6 +788,7 @@ export interface Database {
           updated_at?: string
         }
         Update: Partial<Omit<Payroll, 'id'>>
+        Relationships: []
       }
       payroll_items: {
         Row: PayrollItem
@@ -775,6 +796,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<PayrollItem, 'id' | 'total_deductions' | 'gross_pay' | 'net_pay'>>
+        Relationships: []
       }
       project_costs: {
         Row: ProjectCost
@@ -783,6 +805,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<ProjectCost, 'id'>>
+        Relationships: []
       }
       expenses: {
         Row: Expense
@@ -792,6 +815,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<Expense, 'id'>>
+        Relationships: []
       }
       equipment: {
         Row: Equipment
@@ -801,6 +825,7 @@ export interface Database {
           updated_at?: string
         }
         Update: Partial<Omit<Equipment, 'id'>>
+        Relationships: []
       }
       equipment_assignments: {
         Row: EquipmentAssignment
@@ -809,6 +834,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<EquipmentAssignment, 'id'>>
+        Relationships: []
       }
       documents: {
         Row: Document
@@ -816,6 +842,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<Document, 'id'>>
+        Relationships: []
       }
       notifications: {
         Row: Notification
@@ -825,6 +852,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<Notification, 'id'>>
+        Relationships: []
       }
       audit_logs: {
         Row: AuditLog
@@ -832,6 +860,7 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<AuditLog, 'id'>>
+        Relationships: []
       }
       subscriptions: {
         Row: Subscription
@@ -840,11 +869,13 @@ export interface Database {
           created_at?: string
         }
         Update: Partial<Omit<Subscription, 'id'>>
+        Relationships: []
       }
     }
     Views: {
       project_cost_summary: {
         Row: ProjectCostSummary
+        Relationships: []
       }
     }
     Functions: {

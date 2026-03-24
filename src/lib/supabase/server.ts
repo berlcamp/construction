@@ -5,7 +5,7 @@ import type { Database } from '@/types/database'
 export async function createServerClient() {
   const cookieStore = await cookies()
 
-  return _createServerClient<Database>(
+  return _createServerClient<Database, 'construction'>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
@@ -25,7 +25,7 @@ export async function createServerClient() {
           }
         },
       },
-      db: { schema: 'construction' as any },
+      db: { schema: 'construction' },
     }
   )
 }
