@@ -23,7 +23,7 @@ progress:
 ## Current Position
 
 Phase: 01 (foundation-auth) — EXECUTING
-Plan: 2 of 5
+Plan: 3 of 5
 
 ## Roadmap Summary
 
@@ -43,6 +43,8 @@ Plan: 2 of 5
 - **2026-03-24**: Server-first data flow — Server Components read, Server Actions write, Redux for UI state only
 - **2026-03-24**: Google OAuth only; Supabase Auth; `@supabase/ssr` not deprecated auth-helpers
 - **2026-03-24**: Realtime on notifications + project_inventory only
+- **2026-03-24**: companies/company_members/company_invitations pre-existed from 01-01; plan 02 produced TypeScript database types
+- **2026-03-24**: TypeScript types manually crafted (Docker unavailable); Database interface mirrors Supabase codegen output shape
 
 ## Pending Todos
 
@@ -57,7 +59,7 @@ Plan: 2 of 5
 ## Session Continuity
 
 Last session: 2026-03-24T06:38:32.605Z
-Stopped at: Completed 01-01-PLAN.md — Project setup + database schema (18 migrations, RLS, transaction functions)
+Stopped at: Completed 01-02-PLAN.md — TypeScript database types for all 30 construction schema tables
 Resume file: None
 
 Next action: `/gsd:plan-phase 1`
