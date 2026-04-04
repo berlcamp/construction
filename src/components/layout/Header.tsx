@@ -27,7 +27,7 @@ export function Header({
 
   // Calculate trial days remaining (per D-09)
   let trialDaysLeft: number | null = null
-  if (subscriptionStatus === 'trialing' && trialEndsAt) {
+  if (subscriptionStatus === 'trial' && trialEndsAt) {
     const now = new Date()
     const ends = new Date(trialEndsAt)
     trialDaysLeft = Math.max(0, Math.ceil((ends.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)))

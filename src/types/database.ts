@@ -882,7 +882,6 @@ export type Database = {
       fn_record_delivery: {
         Args: {
           p_purchase_order_id: string
-          p_delivery_date: string
           p_received_by: string
           p_items: Json
           p_notes?: string
@@ -920,8 +919,9 @@ export type Database = {
           p_quantity: number
           p_waste_reason: string
           p_performed_by: string
+          p_notes?: string
         }
-        Returns: void
+        Returns: string
       }
       fn_cancel_reservation: {
         Args: {

@@ -8,8 +8,8 @@
 CREATE OR REPLACE FUNCTION construction.fn_record_delivery(
   p_purchase_order_id UUID,
   p_received_by UUID,
-  p_notes TEXT DEFAULT NULL,
-  p_items JSONB  -- [{po_item_id, material_id, quantity_received, unit_cost}]
+  p_items JSONB,  -- [{po_item_id, material_id, quantity_received, unit_cost}]
+  p_notes TEXT DEFAULT NULL
 )
 RETURNS UUID
 LANGUAGE plpgsql
@@ -341,8 +341,8 @@ CREATE OR REPLACE FUNCTION construction.fn_report_waste(
   p_material_id UUID,
   p_quantity NUMERIC,
   p_waste_reason TEXT,   -- 'damaged', 'expired', 'spillage', 'theft', 'other'
-  p_notes TEXT DEFAULT NULL,
-  p_performed_by UUID
+  p_performed_by UUID,
+  p_notes TEXT DEFAULT NULL
 )
 RETURNS UUID
 LANGUAGE plpgsql

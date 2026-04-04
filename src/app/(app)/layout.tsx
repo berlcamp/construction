@@ -36,7 +36,7 @@ export default async function AppLayout({
         <Header
           companyName={context?.companyName || ''}
           trialEndsAt={context?.trialEndsAt || null}
-          subscriptionStatus={context?.subscriptionStatus || 'trialing'}
+          subscriptionStatus={context?.subscriptionStatus || 'trial'}
           userFullName={profile?.full_name || null}
           userAvatarUrl={profile?.avatar_url || null}
           userEmail={profile?.email || user.email || ''}
