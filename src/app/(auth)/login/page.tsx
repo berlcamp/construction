@@ -16,9 +16,16 @@ function LoginForm() {
       ? `${window.location.origin}/auth/callback?invite_token=${inviteToken}`
       : `${window.location.origin}/auth/callback`
 
+    // User metadata for OAuth must reach GoTrue’s /authorize URL. The JS client
+    // does not support options.data for signInWithOAuth (only queryParams).
     await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo },
+      options: {
+        redirectTo,
+        queryParams: {
+          data: JSON.stringify({ app: 'construction' }),
+        },
+      },
     })
   }
 
