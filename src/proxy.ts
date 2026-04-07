@@ -2,13 +2,13 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { refreshSession } from '@/lib/supabase/middleware'
 
 // Public routes that don't require authentication
-const publicRoutes = ['/login', '/auth/callback', '/invite']
+const publicRoutes = ['/auth/callback', '/invite']
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Allow public routes
-  if (publicRoutes.some(route => pathname.startsWith(route))) {
+  // Allow public routes (and the marketing landing page at "/")
+  if (pathname === '/' || pathname === '/pricing' || publicRoutes.some(route => pathname.startsWith(route))) {
     const { supabaseResponse } = await refreshSession(request)
     return supabaseResponse
   }
@@ -17,9 +17,11 @@ export async function middleware(request: NextRequest) {
   const { user, supabaseResponse } = await refreshSession(request)
 
   if (!user) {
-    // Redirect unauthenticated users to login (AUTH-06)
+    // Redirect unauthenticated users to the landing page with the
+    // sign-in modal open (AUTH-06).
     const redirectUrl = request.nextUrl.clone()
-    redirectUrl.pathname = '/login'
+    redirectUrl.pathname = '/'
+    redirectUrl.search = '?signin=1'
     return NextResponse.redirect(redirectUrl)
   }
 

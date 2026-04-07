@@ -38,8 +38,8 @@ function InviteErrorContent() {
           <CardDescription>{error.description}</CardDescription>
         </CardHeader>
         <CardContent className="flex justify-center">
-          <Link href="/login">
-            <Button variant="outline">Go to Login</Button>
+          <Link href="/?signin=1">
+            <Button variant="outline">Go to Sign In</Button>
           </Link>
         </CardContent>
       </Card>

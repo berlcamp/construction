@@ -13,14 +13,14 @@ export async function GET(request: Request) {
 
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (error) {
-      return NextResponse.redirect(`${origin}/login?error=auth_failed`);
+      return NextResponse.redirect(`${origin}/?signin=1&error=auth_failed`);
     }
 
     const {
       data: { user },
     } = await supabase.auth.getUser();
     if (!user) {
-      return NextResponse.redirect(`${origin}/login?error=no_user`);
+      return NextResponse.redirect(`${origin}/?signin=1&error=no_user`);
     }
 
     // Mark this app in user_metadata (OAuth INSERT may not include queryParams.data on all flows)
@@ -62,6 +62,6 @@ export async function GET(request: Request) {
     return NextResponse.redirect(`${origin}/onboarding`);
   }
 
-  // No code — redirect to login
-  return NextResponse.redirect(`${origin}/login`);
+  // No code — back to landing with sign-in modal open
+  return NextResponse.redirect(`${origin}/?signin=1`);
 }

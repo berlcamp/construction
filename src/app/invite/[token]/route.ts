@@ -29,10 +29,11 @@ export async function GET(
     return NextResponse.redirect(`${origin}/invite/error?reason=expired`)
   }
 
-  // Token is valid — redirect to login page with invite_token param (per D-07)
-  // The login page passes invite_token through OAuth redirectTo,
-  // and the callback route picks it up to call acceptInvitation
+  // Token is valid — bounce to the landing page with the sign-in modal
+  // pre-opened in "accept invitation" mode (per D-07). The modal forwards
+  // invite_token through OAuth redirectTo, and the callback route picks
+  // it up to call acceptInvitation.
   return NextResponse.redirect(
-    `${origin}/login?invite_token=${token}`
+    `${origin}/?invite_token=${token}`
   )
 }

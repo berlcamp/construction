@@ -8,7 +8,7 @@ export default async function MembersPage() {
   const context = await getCompanyContext(supabase)
 
   if (!context) {
-    redirect('/login')
+    redirect('/?signin=1')
   }
 
   // Fetch current members

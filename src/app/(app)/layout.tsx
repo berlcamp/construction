@@ -16,7 +16,7 @@ export default async function AppLayout({
     data: { user },
   } = await supabase.auth.getUser()
   if (!user) {
-    redirect('/login')
+    redirect('/?signin=1')
   }
 
   // Get company context

@@ -28,7 +28,7 @@ export async function createCompany(
   // Verify user is authenticated (per Pitfall 3 — use getUser not getSession)
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
-    redirect('/login')
+    redirect('/?signin=1')
   }
 
   // Check user doesn't already have a company

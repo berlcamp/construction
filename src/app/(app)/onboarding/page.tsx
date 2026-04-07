@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState } from 'react'
+import { useActionState, useEffect, useState } from 'react'
 import { createCompany } from './actions'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -9,6 +9,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 export default function OnboardingPage() {
   const [state, formAction, isPending] = useActionState(createCompany, null)
+  const [hydrated, setHydrated] = useState(false)
+  useEffect(() => {
+    setHydrated(true)
+  }, [])
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-50">
@@ -18,48 +22,66 @@ export default function OnboardingPage() {
           <CardDescription>Set up your construction management workspace</CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={formAction} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Company Name *</Label>
-              <Input
-                id="name"
-                name="name"
-                placeholder="e.g., ABC Construction Corp."
-                required
-                minLength={2}
-                maxLength={100}
-              />
-              {state?.error && typeof state.error === 'object' && 'name' in state.error && Array.isArray((state.error as Record<string, string[]>).name) && (
-                <p className="text-sm text-red-600">{(state.error as Record<string, string[]>).name[0]}</p>
-              )}
-            </div>
+          {hydrated ? (
+            <form action={formAction} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Company Name *</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="e.g., ABC Construction Corp."
+                  required
+                  minLength={2}
+                  maxLength={100}
+                />
+                {state?.error && typeof state.error === 'object' && 'name' in state.error && Array.isArray((state.error as Record<string, string[]>).name) && (
+                  <p className="text-sm text-red-600">{(state.error as Record<string, string[]>).name[0]}</p>
+                )}
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="address">Address</Label>
-              <Input
-                id="address"
-                name="address"
-                placeholder="Optional — company address"
-              />
-            </div>
+              <div className="space-y-2">
+                <Label htmlFor="address">Address</Label>
+                <Input
+                  id="address"
+                  name="address"
+                  placeholder="Optional — company address"
+                />
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="phone">Phone</Label>
-              <Input
-                id="phone"
-                name="phone"
-                placeholder="Optional — contact number"
-              />
-            </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone">Phone</Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  placeholder="Optional — contact number"
+                />
+              </div>
 
-            <Button
-              type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700"
-              disabled={isPending}
-            >
-              {isPending ? 'Creating...' : 'Create Company'}
-            </Button>
-          </form>
+              <Button
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-700"
+                disabled={isPending}
+              >
+                {isPending ? 'Creating...' : 'Create Company'}
+              </Button>
+            </form>
+          ) : (
+            <div className="space-y-4" aria-hidden>
+              <div className="space-y-2">
+                <div className="h-4 w-32 rounded bg-muted animate-pulse" />
+                <div className="h-8 w-full rounded-lg bg-muted animate-pulse" />
+              </div>
+              <div className="space-y-2">
+                <div className="h-4 w-20 rounded bg-muted animate-pulse" />
+                <div className="h-8 w-full rounded-lg bg-muted animate-pulse" />
+              </div>
+              <div className="space-y-2">
+                <div className="h-4 w-16 rounded bg-muted animate-pulse" />
+                <div className="h-8 w-full rounded-lg bg-muted animate-pulse" />
+              </div>
+              <div className="h-9 w-full rounded-lg bg-muted animate-pulse" />
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
