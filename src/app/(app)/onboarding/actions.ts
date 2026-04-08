@@ -1,5 +1,6 @@
 'use server'
 
+import { ensureProfile } from '@/lib/auth/ensureProfile'
 import { createServerClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
@@ -30,6 +31,9 @@ export async function createCompany(
   if (!user) {
     redirect('/?signin=1')
   }
+
+  // Ensure profile exists (may be missing if schema wasn't exposed during initial sign-up)
+  await ensureProfile(supabase, user)
 
   // Check user doesn't already have a company
   const { data: existingMembership } = await supabase
