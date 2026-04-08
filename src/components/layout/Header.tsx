@@ -3,9 +3,9 @@
 import { useSelector } from 'react-redux'
 import type { RootState } from '@/lib/redux/store'
 import { Breadcrumbs } from './Breadcrumbs'
+import { UserMenu } from './UserMenu'
 import { Bell } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 type HeaderProps = {
   companyName: string
@@ -33,10 +33,6 @@ export function Header({
     trialDaysLeft = Math.max(0, Math.ceil((ends.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)))
   }
 
-  const initials = userFullName
-    ? userFullName.split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2)
-    : userEmail[0].toUpperCase()
-
   return (
     <header className="flex h-16 items-center justify-between border-b bg-white px-6">
       {/* Left: Breadcrumbs */}
@@ -61,11 +57,11 @@ export function Header({
           </Badge>
         )}
 
-        {/* User Avatar */}
-        <Avatar className="h-8 w-8">
-          {userAvatarUrl && <AvatarImage src={userAvatarUrl} alt={userFullName || userEmail} />}
-          <AvatarFallback className="bg-blue-600 text-white text-xs">{initials}</AvatarFallback>
-        </Avatar>
+        <UserMenu
+          userFullName={userFullName}
+          userAvatarUrl={userAvatarUrl}
+          userEmail={userEmail}
+        />
       </div>
     </header>
   )

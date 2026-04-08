@@ -1,8 +1,8 @@
+import SignInModal, { SignInTrigger } from "@/components/auth/SignInModal";
+import { createServerClient } from "@/lib/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
-import { createServerClient } from "@/lib/supabase/server";
-import SignInModal, { SignInTrigger } from "@/components/auth/SignInModal";
 
 export const metadata = {
   title: "Sortbrite — Construction Inventory & Sales Management",
@@ -89,11 +89,21 @@ export default async function Home() {
           </span>
         </Link>
         <nav className="hidden items-center gap-9 text-[13px] text-zinc-400 md:flex">
-          <a className="transition hover:text-zinc-50" href="#services">Services</a>
-          <a className="transition hover:text-zinc-50" href="#approach">Approach</a>
-          <a className="transition hover:text-zinc-50" href="#work">Work</a>
-          <Link className="transition hover:text-zinc-50" href="/pricing">Pricing</Link>
-          <a className="transition hover:text-zinc-50" href="#contact">Contact</a>
+          <a className="transition hover:text-zinc-50" href="#services">
+            Services
+          </a>
+          <a className="transition hover:text-zinc-50" href="#approach">
+            Approach
+          </a>
+          <a className="transition hover:text-zinc-50" href="#work">
+            Work
+          </a>
+          <Link className="transition hover:text-zinc-50" href="/pricing">
+            Pricing
+          </Link>
+          <a className="transition hover:text-zinc-50" href="#contact">
+            Contact
+          </a>
         </nav>
         <div className="flex items-center gap-3">
           <SignInTrigger className="hidden text-[13px] text-zinc-300 transition hover:text-white md:block">
@@ -121,9 +131,9 @@ export default async function Home() {
               behind builders.
             </h1>
             <p className="mt-10 max-w-xl text-[15px] leading-relaxed text-zinc-400">
-              Sortbrite is the operating system for Philippine construction firms —
-              an unhurried, disciplined workspace for tracking materials, jobs,
-              and sales without the spreadsheet sprawl.
+              Sortbrite is the operating system for Philippine construction
+              firms — an unhurried, disciplined workspace for tracking
+              materials, jobs, and sales without the spreadsheet sprawl.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <SignInTrigger className="group inline-flex items-center gap-3 rounded-full bg-zinc-50 px-6 py-3.5 text-[13px] font-medium text-zinc-950 transition hover:bg-white">
@@ -148,10 +158,11 @@ export default async function Home() {
                 Currently
               </p>
               <p className="text-[15px] leading-relaxed text-zinc-300">
-                Onboarding mid-sized construction firms across Luzon. Quietly
-                rebuilding how the industry tracks{" "}
-                <span className="italic text-amber-300">every sack,
-                every sale.</span>
+                Onboarding mid-sized construction firms across the Philippines.
+                Quietly rebuilding how the industry tracks{" "}
+                <span className="italic text-amber-300">
+                  every sack, every sale.
+                </span>
               </p>
               <div className="mt-8 space-y-3 text-[12px] text-zinc-500">
                 <div className="flex justify-between">
@@ -193,7 +204,10 @@ export default async function Home() {
       </div>
 
       {/* Services */}
-      <section id="services" className="relative z-10 mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40">
+      <section
+        id="services"
+        className="relative z-10 mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40"
+      >
         <div className="mb-16 grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-4">
             <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-zinc-500">
@@ -247,8 +261,8 @@ export default async function Home() {
               </p>
               <h2 className="font-display text-[clamp(2rem,4.5vw,3.75rem)] leading-[1] tracking-tight text-zinc-50">
                 Software with the{" "}
-                <span className="italic text-amber-300">weight of a tool</span>
-                , not the noise of a feed.
+                <span className="italic text-amber-300">weight of a tool</span>,
+                not the noise of a feed.
               </h2>
             </div>
             <div className="col-span-12 md:col-span-6 md:col-start-7">
@@ -276,7 +290,10 @@ export default async function Home() {
       </section>
 
       {/* CTA */}
-      <section id="contact" className="relative z-10 mx-auto max-w-7xl px-6 py-32 md:px-10 md:py-44">
+      <section
+        id="contact"
+        className="relative z-10 mx-auto max-w-7xl px-6 py-32 md:px-10 md:py-44"
+      >
         <div className="relative overflow-hidden rounded-sm border border-zinc-800 bg-gradient-to-br from-[#0e1115] via-[#0b0d10] to-[#0a0c0f] p-10 md:p-20">
           <div
             aria-hidden
@@ -317,13 +334,23 @@ export default async function Home() {
             <span className="grid h-6 w-6 place-items-center rounded-sm bg-amber-400 text-[10px] font-bold text-zinc-950">
               SB
             </span>
-            <span>© {new Date().getFullYear()} Sortbrite — Built in Manila.</span>
+            <span>
+              © {new Date().getFullYear()} Sortbrite — Built in Manila.
+            </span>
           </div>
           <div className="flex flex-wrap gap-6">
-            <a href="#services" className="transition hover:text-zinc-200">Services</a>
-            <a href="#approach" className="transition hover:text-zinc-200">Approach</a>
-            <Link href="/pricing" className="transition hover:text-zinc-200">Pricing</Link>
-            <SignInTrigger className="transition hover:text-zinc-200">Sign in</SignInTrigger>
+            <a href="#services" className="transition hover:text-zinc-200">
+              Services
+            </a>
+            <a href="#approach" className="transition hover:text-zinc-200">
+              Approach
+            </a>
+            <Link href="/pricing" className="transition hover:text-zinc-200">
+              Pricing
+            </Link>
+            <SignInTrigger className="transition hover:text-zinc-200">
+              Sign in
+            </SignInTrigger>
           </div>
         </div>
       </footer>
