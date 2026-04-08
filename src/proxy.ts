@@ -7,6 +7,13 @@ const publicRoutes = ['/auth/callback', '/invite']
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
+  // Server Actions (POST with Next-Action header) handle their own auth via
+  // supabase.auth.getUser() inside each action. Skip session refresh here to
+  // avoid forwarding large cookie headers that cause 431 errors.
+  if (request.headers.has('next-action')) {
+    return NextResponse.next()
+  }
+
   // Allow public routes (and the marketing landing page at "/")
   if (pathname === '/' || pathname === '/pricing' || publicRoutes.some(route => pathname.startsWith(route))) {
     const { supabaseResponse } = await refreshSession(request)

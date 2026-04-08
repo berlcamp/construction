@@ -76,7 +76,8 @@ export async function createCompany(
     .single()
 
   if (companyError || !company) {
-    return { error: { name: ['Failed to create company. Please try again.'] } }
+    console.error('[onboarding] company insert failed:', companyError)
+    return { error: { name: [companyError?.message ?? 'Failed to create company. Please try again.'] } }
   }
 
   // Create owner membership (per AUTH-04)
@@ -89,9 +90,10 @@ export async function createCompany(
     })
 
   if (memberError) {
+    console.error('[onboarding] membership insert failed:', memberError)
     // Cleanup: delete the company if membership fails
     await supabase.from('companies').delete().eq('id', company.id)
-    return { error: { name: ['Failed to create company membership. Please try again.'] } }
+    return { error: { name: [memberError.message ?? 'Failed to create company membership. Please try again.'] } }
   }
 
   // Redirect to dashboard (per D-04 — no welcome page)
